@@ -1,0 +1,25 @@
+// 1. Load Official Kerala State Boundary from FAO dataset
+var india = ee.FeatureCollection("FAO/GAUL/2015/level1");
+var kerala = india.filter(ee.Filter.eq('ADM1_NAME', 'Kerala'));
+
+// 2. Create the exact 0.125 Degree (~13.9 km) Buffer
+var keralaBuffer = kerala.geometry().buffer(13915); // 13,915 meters
+
+// 3. Paste your 77 Points Array here (Generated from Python Script 01)
+var ptList = [
+  // Example: [76.123, 9.456],
+  // Paste all 77 points here...
+];
+
+var targetPoints = ee.FeatureCollection(ptList.map(function(p) { 
+    return ee.Feature(ee.Geometry.Point(p)); 
+}));
+
+// 4. Map Visualization
+Map.centerObject(kerala, 7);
+Map.setOptions('SATELLITE');
+
+// Add layers to the map
+Map.addLayer(keralaBuffer, {color: 'red', fillOpacity: 0.1}, '0.125 Degree Buffer (13.9km)');
+Map.addLayer(kerala, {color: 'blue', fillOpacity: 0.2}, 'Kerala Official Boundary');
+Map.addLayer(targetPoints, {color: 'yellow'}, '77 Target Grid Points');
