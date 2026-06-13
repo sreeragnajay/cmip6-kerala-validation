@@ -33,7 +33,7 @@ Both dataset tracks are systematically standardized into matching wide-matrix ra
 4. **Temporal Resampling:** Daily values are accumulated into standard month-start totals (`.resample('MS').sum()`) and formatted to strings matching a clean `YYYY-MM` schema.
 
 ### Phase 3: Dual-Track Statistical Validation
-To assess model accuracy before and after bias mitigation, independent validation modules calculate performance benchmarks for all 13 models against the identical IMD target matrix over the shared historical time window (**1990-01 to 2014-11**). 
+To assess model accuracy before and after bias mitigation, independent validation modules calculate performance benchmarks for all 13 models against the identical IMD target matrix over the shared historical time window (**1990-01 to 2014-12**). 
 
 Separate statistics sheets are generated down-column for each model across all 77 stations tracking three core engineering metrics:
 * **Pearson's Correlation Coefficient ($r$):** Captures temporal alignment and monsoon seasonality rhythms.
